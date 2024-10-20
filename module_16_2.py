@@ -6,17 +6,17 @@ app = FastAPI()
 @app.get('/')
 async def welcome() -> dict:
     return {'message': "Главная страница"}
-#
-#
-# @app.get('/user/admin')
-# async def welcome() -> dict:
-#     return {'message': "Вы вошли как администратор"}
-#
-#
-# @app.get('/user/{user_id}')
-# async def news(user_id: int=Path(min_lenght=1, max_length=100, description='Enter User ID',
-#                                  example=23)) -> dict:
-#     return {'message': f'Вы вошли как пользователь № {user_id}'}
+
+
+@app.get('/user/admin')
+async def welcome() -> dict:
+    return {'message': "Вы вошли как администратор"}
+
+
+@app.get('/user/{user_id}')
+async def news(user_id: int=Path(ge=1, le=100, description='Enter User ID',
+                                 example=23)) -> dict:
+    return {'message': f'Вы вошли как пользователь № {user_id}'}
 
 
 @app.get('/user/{username}/{age}')
